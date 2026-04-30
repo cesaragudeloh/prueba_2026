@@ -1,0 +1,40 @@
+CONCLUSIONES
+
+1. RESULTADO GENERAL
+La prueba automatizada E2E del flujo de compra en SauceDemo fue implementada exitosamente utilizando Serenity BDD con el patrón Screenplay.
+El escenario se ejecutó correctamente, validando el flujo completo desde el login hasta la confirmación de la compra.
+
+2. VALIDACIÓN FUNCIONAL
+Se validaron las siguientes funcionalidades:
+- Inicio de sesión con credenciales válidas
+- Adición de múltiples productos al carrito
+- Visualización del carrito
+- Finalización del proceso de compra (checkout)
+- Visualización del mensaje de confirmación
+
+El sistema se comportó según lo esperado en todos los pasos evaluados.
+
+3. ENFOQUE DE AUTOMATIZACIÓN
+Se utilizó el patrón Screenplay para asegurar:
+- Alta legibilidad de los escenarios
+- Separación de responsabilidades (Tasks, Interactions, Questions)
+- Mantenibilidad y escalabilidad del código
+
+Serenity BDD permitió generar reportes detallados con trazabilidad paso a paso.
+
+4. OBSERVACIONES TÉCNICAS
+- La ejecución de las pruebas fue estable y sin fallos.
+- El reporte de Serenity se generó correctamente tras la configuración adecuada.
+- Se detectaron advertencias del entorno (por ejemplo, compatibilidad con Chrome DevTools), sin impacto en la ejecución.
+
+5. OPORTUNIDADES DE MEJORA
+- Incluir escenarios negativos y casos límite
+- Parametrizar datos de prueba para mayor cobertura
+- Integrar la solución en un pipeline de CI/CD (GitHub Actions, Jenkins)
+- Incorporar ejecución cross-browser
+- Mejorar los reportes mediante el uso de tags y filtros
+
+6. EVALUACIÓN FINAL
+La solución cumple con el requerimiento planteado, validando el flujo de compra de forma automatizada, confiable y mantenible.
+
+La implementación demuestra buenas prácticas de automatización, incluyendo el uso de BDD, arquitectura limpia y herramientas modernas.

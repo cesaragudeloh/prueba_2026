@@ -1,6 +1,6 @@
 package com.saucedemo.automation.web.models;
 
-import com.saucedemo.automation.web.tasks.LogInAsStandardUser;
+import com.saucedemo.automation.web.tasks.LogIn;
 import net.serenitybdd.core.steps.Instrumented;
 import net.serenitybdd.screenplay.Performable;
 
@@ -20,7 +20,7 @@ public class LogInBuilder {
     }
 
     public Performable build() {
-        return Instrumented.instanceOf(LogInAsStandardUser.class).withProperties(this.username, this.password);
+        return Instrumented.instanceOf(LogIn.class).withProperties(this.username, this.password);
     }
 }
 

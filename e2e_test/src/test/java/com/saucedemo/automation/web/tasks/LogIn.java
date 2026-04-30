@@ -11,12 +11,12 @@ import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Open;
 
 
-public class LogInAsStandardUser implements Task {
+public class LogIn implements Task {
 
     private final String username;
     private final String password;
 
-    public LogInAsStandardUser(String username, String password) {
+    public LogIn(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -25,10 +25,10 @@ public class LogInAsStandardUser implements Task {
         return new LogInBuilder();
     }
 
-    public static Performable withDefaultCredentials() {
+    public static Performable withDefaultCredentials(String username, String password) {
         return builder()
-                .username("standard_user")
-                .password("secret_sauce")
+                .username(username)
+                .password(password)
                 .build();
     }
 

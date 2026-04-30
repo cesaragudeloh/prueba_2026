@@ -23,9 +23,6 @@ public class CompleteCheckout implements Task {
         this.postalCode = postalCode;
     }
 
-    public static Performable withDefaultData() {
-        return Instrumented.instanceOf(CompleteCheckout.class).withProperties("Cesar", "Automation", "54001");
-    }
 
     @Override
     public <T extends Actor> void performAs(T actor) {
@@ -37,6 +34,10 @@ public class CompleteCheckout implements Task {
                 Click.on(CheckoutInformationPage.CONTINUE_BUTTON),
                 Click.on(CheckoutOverviewPage.FINISH_BUTTON)
         );
+    }
+
+    public static Performable withDefaultData(String firstName, String lastName, String postalCode) {
+        return Instrumented.instanceOf(CompleteCheckout.class).withProperties(firstName, lastName, postalCode);
     }
 }
 

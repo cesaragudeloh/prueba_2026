@@ -1,4 +1,4 @@
-package com.saucedemo.automation.web.steps;
+package com.saucedemo.automation.web.stepdefinitions;
 
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -13,8 +13,10 @@ public class CommonHooks {
     public void beforeScenario(Scenario scenario) {
         OnStage.setTheStage(new OnlineCast());
         String baseUrl = AppConfig.baseUrl();
-        OnStage.theActorCalled("SauceDemo user").attemptsTo(Open.url(baseUrl));
-
+        OnStage.theActorCalled("standard_user")
+                .attemptsTo(
+                        Open.url(baseUrl)
+                );
     }
 }
 

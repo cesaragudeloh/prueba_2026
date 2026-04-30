@@ -52,15 +52,43 @@ target/site/serenity/index.html
 ## Estructura del Proyecto
 ```
 src
-└── test
-├── java
-│    ├── runners
-│    ├── stepdefinitions
-│    ├── tasks
-│    ├── interactions
-│    └── questions
-└── resources
-└── features
+ ├── main
+ └── test
+     ├── java
+     │   └── com.saucedemo.automation.web
+     │       ├── models
+     │       │   └── LogInBuilder.java
+     │       │
+     │       ├── runners
+     │       │   └── SauceDemoPurchaseFlowSuite.java
+     │       │
+     │       ├── stepdefinitions
+     │       │   ├── CommonHooks.java
+     │       │   └── PurchaseFlowStepDefinitions.java
+     │       │
+     │       ├── tasks
+     │       │   ├── AddFirstTwoProductsToCart.java
+     │       │   ├── CompleteCheckout.java
+     │       │   ├── LogIn.java
+     │       │   └── OpenCart.java
+     │       │
+     │       ├── userinterface
+     │       │   ├── CartPage.java
+     │       │   ├── CheckoutCompletePage.java
+     │       │   ├── CheckoutInformationPage.java
+     │       │   ├── CheckoutOverviewPage.java
+     │       │   ├── InventoryPage.java
+     │       │   └── LoginPage.java
+     │       │
+     │       └── util
+     │           ├── AppConfig.java
+     │           └── RandomUtils.java
+     │
+     └── resources
+         ├── features
+         │   └── purchase_flow.feature
+         ├── junit-platform.properties
+         └── serenity.conf
 ```
 
 ## Reportes

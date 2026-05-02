@@ -12,8 +12,8 @@ Scenario: crear y actualizar el nombre y correo del usuario
   * def user = read('classpath:features/users/data/users/user.json')
   * set user.id = userId
   * set user.username = username
-  * set user.firstName = 'Original'
-  * set user.lastName = 'User'
+  * set user.firstName = 'John'
+  * set user.lastName = 'Doe'
   * set user.email = username + '@example.com'
   * set user.password = 'P@ssw0rd123'
   * set user.phone = '5551234567'
@@ -27,8 +27,8 @@ Scenario: crear y actualizar el nombre y correo del usuario
   * def updatedUser = read('classpath:features/users/data/users/user.json')
   * set updatedUser.id = userId
   * set updatedUser.username = username
-  * set updatedUser.firstName = 'Actualizado'
-  * set updatedUser.lastName = 'Usuario'
+  * set updatedUser.firstName = 'Jane'
+  * set updatedUser.lastName = 'Smith'
   * set updatedUser.email = username + '.updated@example.com'
   * set updatedUser.password = 'P@ssw0rd123'
   * set updatedUser.phone = '5551234567'
@@ -45,7 +45,7 @@ Scenario: crear y actualizar el nombre y correo del usuario
   Then status 200
   And match response.id == userId
   And match response.username == username
-  And match response.firstName == 'Actualizado'
-  And match response.lastName == 'Usuario'
+  And match response.firstName == 'Jane'
+  And match response.lastName == 'Smith'
   And match response.email == username + '.updated@example.com'
 

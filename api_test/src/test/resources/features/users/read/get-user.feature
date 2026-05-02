@@ -12,8 +12,8 @@ Scenario: crear y buscar el usuario creado
   * def user = read('classpath:features/users/data/users/user.json')
   * set user.id = userId
   * set user.username = username
-  * set user.firstName = 'Leer'
-  * set user.lastName = 'Usuario'
+  * set user.firstName = 'Michael'
+  * set user.lastName = 'Brown'
   * set user.email = username + '@example.com'
   * set user.password = 'P@ssw0rd123'
   * set user.phone = '5551234567'
@@ -30,7 +30,7 @@ Scenario: crear y buscar el usuario creado
   Then status 200
   And match response.id == userId
   And match response.username == username
-  And match response.firstName == 'Leer'
-  And match response.lastName == 'Usuario'
+  And match response.firstName == 'Michael'
+  And match response.lastName == 'Brown'
   And match response.email == username + '@example.com'
 

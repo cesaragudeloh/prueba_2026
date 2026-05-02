@@ -12,8 +12,8 @@ Scenario: crear y eliminar un usuario, validando que ya no exista
   * def user = read('classpath:features/users/data/users/user.json')
   * set user.id = userId
   * set user.username = username
-  * set user.firstName = 'Delete'
-  * set user.lastName = 'Me'
+  * set user.firstName = 'Alex'
+  * set user.lastName = 'Johnson'
   * set user.email = username + '@example.com'
   * set user.password = 'P@ssw0rd123'
   * set user.phone = '5551234567'

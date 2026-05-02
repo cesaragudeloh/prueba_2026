@@ -11,8 +11,8 @@ Scenario: crear un usuario nuevo
   * def user = read('classpath:features/users/data/users/user.json')
   * set user.id = userId
   * set user.username = username
-  * set user.firstName = 'Cesar'
-  * set user.lastName = 'Docs'
+  * set user.firstName = 'John'
+  * set user.lastName = 'Doe'
   * set user.email = username + '@example.com'
   * set user.password = 'P@ssw0rd123'
   * set user.phone = '5551234567'

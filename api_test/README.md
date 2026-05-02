@@ -1,50 +1,62 @@
-# API Test - Karate - Petstore CRUD Flow
+# API Test - Karate (Petstore)
 
-Proyecto de pruebas API con Karate `2.0.6` y Gradle para el servicio público de Petstore.
+Proyecto de pruebas API con Karate `2.0.6` y Gradle sobre el endpoint público `https://petstore.swagger.io/v2`.
 
-## Estructura principal
+## Objetivo
 
-- `src/test/java/users/UsersRunner.java`: runner JUnit 5 que ejecuta el flujo CRUD completo.
-- `src/test/resources/karate-config.js`: configuración global (baseUrl: Petstore).
-- `src/test/resources/features/users/crud-flow.feature`: **flujo completo CRUD en un solo scenario** (5 pasos en orden estricto).
+Validar un flujo CRUD de usuario en orden estricto:
+
+1. Crear usuario
+2. Buscar usuario creado
+3. Actualizar nombre y correo
+4. Buscar usuario actualizado
+5. Eliminar usuario
+6. Verificar eliminación (404)
+
+## Estructura del proyecto
+
+- `src/test/java/users/UsersRunner.java`: runner JUnit 5 para ejecutar la suite Karate de `features/users`.
+- `src/test/resources/karate-config.js`: configuración global de entorno (`baseUrl`) y logging con salida formateada.
+- `src/test/resources/features/users/crud-flow.feature`: flujo E2E principal en un solo escenario, con pasos en orden estricto.
 - `src/test/resources/features/users/create/create-user.feature`: escenario individual de creación.
 - `src/test/resources/features/users/read/get-user.feature`: escenario individual de lectura.
 - `src/test/resources/features/users/update/update-user.feature`: escenario individual de actualización.
 - `src/test/resources/features/users/delete/delete-user.feature`: escenario individual de eliminación.
-- `src/test/resources/features/users/data/users/user.json`: plantilla base de usuario (datos sintéticos).
+- `src/test/resources/features/users/data/users/user.json`: plantilla base reutilizable para requests.
 
-## Flujo CRUD principal
+## Datos y trazabilidad
 
-El archivo `crud-flow.feature` ejecuta los **5 pasos en orden estricto** con el mismo usuario:
+- Se usan nombres de prueba realistas (ej. `John Doe`, `Jane Smith`) en lugar de etiquetas genéricas.
+- El `username` se genera corto para mejorar legibilidad en consola: `qa` + `(System.currentTimeMillis() % 100000)`.
+- Los emails derivan del username (`<username>@example.com` y `<username>-updated@example.com`).
+- En `crud-flow.feature` se imprime request/response por operación con `karate.pretty(...)`.
 
-1. **Crear un usuario** → POST /user (status 200)
-2. **Buscar el usuario creado** → GET /user/{username} (validar datos originales)
-3. **Actualizar** nombre y correo → PUT /user/{username} (status 200)
-4. **Buscar el usuario actualizado** → GET /user/{username} (validar cambios)
-5. **Eliminar el usuario** → DELETE /user/{username} (status 200)
-6. **Validar eliminación** → GET /user/{username} (status 404 - "User not found")
+## Ejecución
 
-## Ejecutar pruebas
+Desde la raíz del proyecto:
 
 ```bash
 ./gradlew test
 ```
 
-## Ejecutar el flujo CRUD principal solamente
+Ejecución limpia:
 
 ```bash
 ./gradlew clean test
 ```
 
-## Reportes generados
+## Reportes
 
 - `build/karate-reports/index.html`
 - `build/reports/tests/test/index.html`
 
 ## Notas de implementación
 
+- La suite corre en secuencial (`parallel(1)`) para mayor estabilidad contra un servicio público.
+- `crud-flow.feature` garantiza orden estricto con el mismo usuario durante todo el flujo.
+- Además del flujo principal, se conservan features individuales para cobertura por operación.
 - Los pasos del flujo CRUD usan el **mismo usuario** desde creación hasta eliminación, garantizando orden estricto.
-- Cada ejecución genera un username único (`qa-flow-{UUID}`) para evitar colisiones.
+- Cada ejecución genera un username único y corto basado en timestamp para evitar colisiones.
 - La plantilla `user.json` contiene datos sintéticos y se sobrescribe en cada paso del flujo.
-- El entorno apunta a `https://petstore.swagger.io/v2` (API pública, sin persistencia real).
+- El entorno apunta a `https://petstore.swagger.io/v2` (API pública).
 - Los escenarios individuales (create, read, update, delete) se ejecutan internamente también, cada uno con su propio usuario único.

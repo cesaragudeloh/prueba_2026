@@ -1,33 +1,15 @@
 Hallazgos y conclusiones del ejercicio
 
-## Solución Final
-
-Se implementó un flujo CRUD completo en Karate que garantiza **orden estricto** y **reutilización del mismo usuario**:
-
-### Flujo implementado (crud-flow.feature)
-1. **Paso 1: Crear usuario** → POST /user (status 200)
-2. **Paso 2: Buscar usuario creado** → GET /user/{username} (valida datos originales)
-3. **Paso 3: Actualizar nombre y correo** → PUT /user/{username} (status 200)
-4. **Paso 4: Buscar usuario actualizado** → GET /user/{username} (valida cambios)
-5. **Paso 5: Eliminar usuario** → DELETE /user/{username} (status 200)
-6. **Validación: Confirmar eliminación** → GET /user/{username} (status 404)
-
-### Decisiones de diseño
-- **Un solo scenario** con 5 pasos claramente separados por comentarios.
-- **Mismo usuario** reutilizado en todos los pasos (userId y username generados una sola vez).
-- **Fin del parámetro único** para evitar conflictos: cada ejecución crea usernames únicos con UUID.
-- **Plantilla reutilizable** (user.json) con datos sintéticos para mantener limpieza de código.
-- **Ejecución secuencial** (parallel=1) para estabilidad con el servicio público.
-
-### Validaciones del Petstore
-- POST /user: responde 200 con confirmación
-- GET /user/{username}: retorna el usuario con todos los campos
-- PUT /user/{username}: actualiza datos, mantiene username
-- DELETE /user/{username}: retorna 200 con confirmación
-- GET posterior a DELETE: retorna 404 "User not found"
-
-### Próximos pasos para la entrega
-1. Publicar el repositorio en GitHub
-2. Colocar la URL en los comentarios del ejercicio
-3. Empaquetar en .zip con README y conclusiones (ya incluidas)
+1. Se implemento correctamente el flujo CRUD de usuario sobre Petstore con orden estricto: crear, buscar, actualizar, buscar actualizado, eliminar y verificar 404 final.
+2. El flujo principal quedo consolidado en `src/test/resources/features/users/crud-flow.feature`, usando el mismo usuario durante toda la ejecucion.
+3. Se mantuvieron features individuales (`create`, `read`, `update`, `delete`) para cobertura por operacion, y el runner ejecuta la suite completa de `features/users`.
+4. Se mejoro la trazabilidad en consola:
+   - Logging global formateado desde `karate-config.js`.
+   - Impresion explicita de request/response en el flujo E2E con `karate.pretty(...)` y etiquetas por operacion.
+5. Se reemplazaron valores genericos por datos de prueba mas realistas (`John Doe`, `Jane Smith`, etc.).
+6. Se acorto el formato de `username` para mejorar legibilidad en consola y reportes: `qa` + `(System.currentTimeMillis() % 100000)`.
+7. El `user.json` se mantiene como plantilla reutilizable y cada escenario sobrescribe campos dinamicos (id, username, email, nombres, etc.).
+8. La ejecucion validada con Gradle fue satisfactoria (`./gradlew test`), generando reportes HTML para evidencias.
+9. Riesgo residual: al usar un endpoint publico (`https://petstore.swagger.io/v2`), pueden existir respuestas intermitentes por disponibilidad del servicio.
+10. Recomendacion final: para CI/CD estable, considerar retries controlados y opcion de entorno mock/stub para pruebas deterministicas.
 

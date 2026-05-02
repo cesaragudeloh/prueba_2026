@@ -8,7 +8,7 @@ Background:
 
 Scenario: crear y actualizar el nombre y correo del usuario
   * def userId = System.currentTimeMillis()
-  * def username = 'qa-update-' + UUID.randomUUID()
+  * def username = 'qa' + (System.currentTimeMillis() % 100000)
   * def user = read('classpath:features/users/data/users/user.json')
   * set user.id = userId
   * set user.username = username

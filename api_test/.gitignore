@@ -1,5 +1,13 @@
 .gradle
-build/
+build/*
+!build/karate-reports/
+!build/karate-reports/**
+!build/reports/
+build/reports/*
+!build/reports/tests/
+build/reports/tests/*
+!build/reports/tests/test/
+!build/reports/tests/test/**
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/

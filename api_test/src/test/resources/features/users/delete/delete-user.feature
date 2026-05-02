@@ -8,7 +8,7 @@ Background:
 
 Scenario: crear y eliminar un usuario, validando que ya no exista
   * def userId = System.currentTimeMillis()
-  * def username = 'qa-delete-' + UUID.randomUUID()
+  * def username = 'qa' + (System.currentTimeMillis() % 100000)
   * def user = read('classpath:features/users/data/users/user.json')
   * set user.id = userId
   * set user.username = username

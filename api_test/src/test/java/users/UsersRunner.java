@@ -12,7 +12,7 @@ public class UsersRunner {
     void testAll() {
         SuiteResult result = Runner.path("classpath:features/users")
                 .outputHtmlReport(true)
-                .parallel(5);
+                .parallel(1);
 
         assertTrue(result.isPassed());
     }

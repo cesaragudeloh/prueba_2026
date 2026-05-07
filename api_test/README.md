@@ -45,6 +45,16 @@ Ejecución limpia:
 ./gradlew clean test
 ```
 
+## CI (GitHub Actions)
+
+- Workflow: `.github/workflows/ci.yml`
+- Trigger: `push` y `pull_request` sobre `main` y `master`
+- Job: ejecuta `./gradlew clean test --no-daemon`
+- Artefacto: `karate-test-reports` con:
+  - `build/reports/tests/test/**`
+  - `build/test-results/test/**`
+  - `build/karate-reports/**`
+
 ## Reportes
 
 - `build/karate-reports/index.html`
